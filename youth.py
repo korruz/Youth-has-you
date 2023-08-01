@@ -60,6 +60,8 @@ async def crawl_wiki_data():
                 print("tables 内容不存在")
         else:
             print("data-uuid 内容不存在")
+            print("正在重试...")
+            await crawl_wiki_data()
 
 
 async def parse_wiki_data(table_html):
@@ -178,4 +180,4 @@ async def down_pic(name, pic_urls):
 if __name__ == "__main__":
     # asyncio.run(crawl_pic_urls())
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(crawl_pic_urls())
+    loop.run_until_complete(crawl_wiki_data())
